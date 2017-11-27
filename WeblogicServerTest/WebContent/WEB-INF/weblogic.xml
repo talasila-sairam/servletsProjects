@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE weblogic-web-app PUBLIC "-//BEA
+Systems, Inc.//DTD Web Application 6.0//EN"
+"http://www.bea.com/servers/wls600/dtd/
+weblogic-web-jar.dtd">
+<weblogic-web-app>
+ 
+ <security-role-assignment>
+     <role-name>foradmin</role-name>
+     <principal-name>saiadmin</principal-name>
+ </security-role-assignment>
+ <security-role-assignment>
+     <role-name>formanager</role-name>
+     <principal-name>saimanager</principal-name>
+</security-role-assignment>
+
+</weblogic-web-app>
