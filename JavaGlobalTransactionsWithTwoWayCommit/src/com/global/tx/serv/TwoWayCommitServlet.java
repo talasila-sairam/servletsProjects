@@ -103,7 +103,7 @@ public class TwoWayCommitServlet extends HttpServlet {
 				//These DataSources are Non XA DataSources Are Configured in Weblogic server
 				//DataSource oracleDataSourceWith1PC = (javax.sql.DataSource) context.lookup("oracleJndiWith1PC");
 				DataSource oracleDataSourceWithEmulate2PC = (javax.sql.DataSource) context.lookup("oracleJndiWithEmulate2PC");
-				//DataSource oracleDataSourceWithLLR = (javax.sql.DataSource) context.lookup("oracleJndiWithLLR");
+				//DataSource oracleDataSourceWithLLR = (javax.sql.DataSource) context.lookup("oracleJndiWithLLR")
 				
 				//These are the Connections Comming from above DataSources
 				//Connection oracleConnectioneWith1PC = oracleDataSourceWith1PC.getConnection(); //If more than one resource participates throws Exception
