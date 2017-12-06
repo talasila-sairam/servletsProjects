@@ -95,10 +95,37 @@ public class TwoWayCommitServlet extends HttpServlet {
 				DataSource oracleDataSource = (javax.sql.DataSource) context.lookup("oraclejndi");
 				DataSource mySqlDataSource = (javax.sql.DataSource) context.lookup("mysqldatasource");
 				
+				/* This Rmi DataSource is implementing sal DataSource this interface is extending the remaing two Interfaces ConnectionPoolDataSource
+				 * and XA DataSources
+				 * */
+				 System.out.println("oracle DataSource Object  "+oracleDataSource.getClass().getName());
+				for(Class classType : oracleDataSource.getClass().getClasses()){
+					System.out.println("Parent classes are "+classType.getName());
+					for(Class classType1 : classType.getClasses()){
+						System.out.println(classType.getName()+" for this parent interfaces are  "+ classType1.getName());
+						for(Class classType2 : classType1.getClasses()){
+							System.out.println(classType1.getName()+" for this parent interfaces are "+classType2.getName());
+						}
+					}
+				}
+				System.out.println("mysql DataSource Object  "+mySqlDataSource.getClass().getName());
 				
 				//These Connection Objects are comming from Above DataSources
 				Connection oracleConnection = oracleDataSource.getConnection();
 				Connection mysqlConnection = mySqlDataSource.getConnection();
+				
+				/*To Know the Implementation classes of These Connections and it will display the all implementation interfaces
+				 *  and classes for it you can easily find out that it is using XAConnection and it is also implementing the 
+				 *  PooledConnection interface also so our connection object will support global transactions and connection pooling also
+				 * 
+				System.out.println("oracle Connection Object  "+oracleConnection.getClass().getName());
+				for(Class classType : oracleConnection.getClass().getInterfaces()){
+					System.out.println("Parent classes are "+classType.getName());
+					for(Class classType1 : classType.getInterfaces()){
+						System.out.println(classType.getName()+" for this Parent classes are  "+ classType1.getName());
+					}
+				}
+				System.out.println("mysql Connection Object  "+mysqlConnection.getClass().getName());*/
 				
 				//These DataSources are Non XA DataSources Are Configured in Weblogic server
 				//DataSource oracleDataSourceWith1PC = (javax.sql.DataSource) context.lookup("oracleJndiWith1PC");
@@ -106,9 +133,9 @@ public class TwoWayCommitServlet extends HttpServlet {
 				//DataSource oracleDataSourceWithLLR = (javax.sql.DataSource) context.lookup("oracleJndiWithLLR")
 				
 				//These are the Connections Comming from above DataSources
-				//Connection oracleConnectioneWith1PC = oracleDataSourceWith1PC.getConnection(); //If more than one resource participates throws Exception
-				  Connection oracleConnectionWithEmulate2PC =  oracleDataSourceWithEmulate2PC.getConnection();//With in Same resource Table it will insert so it will throw exception
-				//Connection oracleConnectionWithLLR = oracleDataSourceWithLLR.getConnection();
+				//Connection oracleConnectioneWith1PC = oracleDataSourceWith1PC.getConnection(); //With in Same resource Table it will insert so it will throw exception
+				  Connection oracleConnectionWithEmulate2PC =  oracleDataSourceWithEmulate2PC.getConnection();
+				//Connection oracleConnectionWithLLR = oracleDataSourceWithLLR.getConnection();//If more than one resource participates throws Exception
 				
 				//Checking these Connection Objects are AutoCmmited or not inside transaction as well as outside Transaction
 				System.out.println("OracleXAConnection  "+oracleConnection.getAutoCommit());
