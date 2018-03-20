@@ -1,0 +1,23 @@
+  body {
+	background: aqua;
+}
+button {
+    background:yellow;
+	color: red;
+}
+select {
+	background: red;
+}
+h2 {
+	font-family: cursive;
+	font: small-caps;
+	color: purple;
+}
+span {
+	color: blue;
+}
+#div1{
+	size: px;
+	height:50px;
+	width: 50px; 
+}
